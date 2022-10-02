@@ -8,4 +8,8 @@ evidently
 dill
 matplotlib
 pytest
+<<<<<<< HEAD
 -e .
+=======
+-e .
+>>>>>>> f21b5fefb0d3cdd86d3899c4397d100acbe3d930
