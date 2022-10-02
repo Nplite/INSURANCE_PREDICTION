@@ -1,4 +1,4 @@
-Application URL : [InsurancePremiumPredictor](https://premium-prediction-app.herokuapp.com/)
+Application URL : [InsurancePremiumPredictor](https://dashboard.heroku.com/apps/insurancepredition)
 
 ## Table of contents
 * [About project](#about-project)
@@ -134,20 +134,6 @@ When your datset stats gets change we call it as data drift
 
 ### 6. Model Deployement
 * Deployment is the method by which we integrate a machine learning model into production environment to make practical business decisions based on data. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
