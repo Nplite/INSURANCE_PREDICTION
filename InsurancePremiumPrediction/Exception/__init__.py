@@ -29,3 +29,4 @@ class InsuranceException(Exception):
 
     def __repr__(self):
         return InsuranceException.__name__.str()
+    
