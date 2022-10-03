@@ -4,7 +4,7 @@ from typing import List
 #Declaring variables from setup functions
 PROJECT_NAME="Insurace_premium_prediction"
 VERSION="0.0.3"
-AUTHOR="DEEPAK RAUTELLA"
+AUTHOR="Namdeo Patil"
 DESCRIPTION="This is my first self made project"
 REQUIREMENT_FILE_NAME="requirements.txt"
 
