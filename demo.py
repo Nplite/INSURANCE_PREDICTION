@@ -8,7 +8,7 @@ from InsurancePremiumPrediction.component.model_trainer import ModelTrainer
 from InsurancePremiumPrediction.component.model_evaluation import ModelEvaluation
 from InsurancePremiumPrediction.component.model_pusher import ModelPusher
 
-file_path='C:\Users\Nplite\Desktop\INEURON\INSURANCE_PREDICTION\config\config.yaml'
+file_path=r'C:\Users\Nplite\Desktop\INEURON\INSURANCE_PREDICTION\config\config.yaml'
 config=Configuration(file_path)
 data_ingestion_config_=config.get_data_ingested_config()
 data_ingestion=DataIngestion(data_ingestion_config=data_ingestion_config_)
