@@ -16,7 +16,7 @@ class InsuranceException(Exception):
         """
         _,_,exec_tb=error_detail.exc_info()
         try_block_line_number=exec_tb.tb_lineno
-        except_block_line_number=exec_tb.tb_frame.f_lineno
+        except_block_line_number=exec_tb.tb_frame.f_lineno 
         file_name=exec_tb.tb_frame.f_code.co_filename
         error_message=f"""Error occured in script:
         [{file_name}] at try block line number :
