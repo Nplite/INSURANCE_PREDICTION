@@ -10,7 +10,7 @@ import json
 from InsurancePremiumPrediction.config.configuration import Configuration
 from InsurancePremiumPrediction.constant import CONFIG_DIR, get_current_time_stamp
 from InsurancePremiumPrediction.Pipeline.pipeline import Pipeline
-from InsurancePremiumPrediction.entity.Insurance_premium_predictor import InsurancePredictor, InsurancePremiumPredictionData
+from InsurancePremiumPrediction.entity.insurance_premium_predictor import InsurancePredictor, InsurancePremiumPredictionData
 from flask import send_file, abort, render_template
 
 
