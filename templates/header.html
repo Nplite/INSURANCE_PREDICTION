@@ -57,7 +57,7 @@ table-layout: fixed;
                 aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="/">Credi card Default prediction</a>
+            <a class="navbar-brand" href="/">Insurance Premium Price Estimation</a>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
@@ -73,10 +73,10 @@ table-layout: fixed;
                         <a class="nav-link {% if 'saved_models' in request.path %} active {% endif %}" href="/saved_models">View Trained Model</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if 'predict' in request.path %} active {% endif %}" href="/predict">Estimate Credit Default</a>
+                        <a class="nav-link {% if 'predict' in request.path %} active {% endif %}" href="/predict">Estimate Insurance Premium Price</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if 'predict' in request.path %} active {% endif %}" href="/view_experiment_list">Experiment History</a>
+                        <a class="nav-link {% if 'predict' in request.path %} active {% endif %}" href="/view_experiment_hist">Experiment History</a>
                     </li>
                 </ul>
             </div>
@@ -100,16 +100,12 @@ table-layout: fixed;
                     <a style=" text-decoration: none;color:black" href="/saved_models">View Trained Model</a>
                 </li>
                 <li class="list-group-item py-1 {% if 'predict' in request.path %} active {% endif %}">
-                    <a style=" text-decoration: none;color:black" href="/predict">Estimate CreditCard Default</a>
+                    <a style=" text-decoration: none;color:black" href="/predict">Estimate Insurance Premium Price</a>
                 </li>
                 <li class="list-group-item py-1 {% if 'train' in request.path %} active {% endif %}">
-                    <a style=" text-decoration: none;color:black" href="/train">Train CreditCard Default Estimator</a>
+                    <a style=" text-decoration: none;color:black" href="/train">Train Insurance Premium Price Estimator</a>
                 </li>
                 
-
-
-                <li class="list-group-item py-1 {% if 'update_model_config' in request.path %} active {% endif %}">
-                    <a style=" text-decoration: none;color:black" href="/update_model_config">Update Model Config</a>
                 </li>
             </ul>
 

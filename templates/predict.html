@@ -3,7 +3,7 @@
 {% block head %}
 
 
-<title>Insurance Estimator</title>
+<title>Insurance Premium Estimator</title>
 {% endblock %}
 
 {% block content %}
@@ -13,134 +13,69 @@
 
 
         <form action="/predict" method="post">
-            <legend>Insurance Estimation Form</legend>
+            <legend>Insurance Premium Estimation Form</legend>
             <div class="mb-3">
-                <label class="form-label">ID</label>
-                <input class="form-control" type="text" name="ID" placeholder="Enter a value of ID"
+                <label class="form-label">age</label>
+                <input class="form-control" type="text" name="age" placeholder="Enter a value of age"
                     required />
             </div>
             <div class="mb-3">
-                <label class="form-label">LIMIT_BAL</label>
-                <input class="form-control" type="text" name="LIMIT_BAL" placeholder="Enter a value of LIMIT_BAL"
+                <label class="form-label">sex</label>
+                <select class="form-control" name="sex" placeholder="Enter a value of sex"
+                    required>
+                    <option value="male">
+                        male
+                    </option>
+                    <option value="female">
+                        female
+                    </option>
+                </select>
+            <div class="mb-3">
+                <label class="form-label">smoker</label>
+                <select class="form-control" name="smoker" placeholder="Enter a value of Smoker"
+                    required>
+                    <option value="yes">
+                        yes
+                    </option>
+                    <option value="no">
+                        no
+                    </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">bmi</label>
+                <input class="form-control" type="text" name="bmi" placeholder="Enter a value of Bmi"
                     required />
 
             </div>
             <div class="mb-3">
-                <label class="form-label">SEX</label>
-                <input class="form-control" type="text" name="SEX"
-                    placeholder="Enter a value of SEX" />
+                <label class="form-label">children</label>
+                <input class="form-control" type="text" name="children"
+                    placeholder="Enter a value of children" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">region</label>
+                <select class="form-control" name="region" placeholder="Enter a value of region"
+                    required>
 
-            </div>
-            <div class="mb-3">
-                <label class="form-label">EDUCATION</label>
-                <input class="form-control" type="text" name="EDUCATION" placeholder="Enter a value of EDUCATION"
-                    required />
+                    <option value="northeast">
+                        northeast
+                    </option>
+                    <option value="northwest">
+                        northwest
+                    </option>
+                    <option value="southeast">
+                        southeast
+                    </option>
+                    <option value="southwest">
+                        southwest
+                    </option>
 
+                </select>
             </div>
             <div class="mb-3">
-                <label class="form-label">MARRIAGE</label>
-                <input class="form-control" type="text" name="MARRIAGE"
-                    placeholder="Enter a value of MARRIAGE" required />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">AGE</label>
-                <input class="form-control" type="text" name="AGE" placeholder="Enter a value of AGE"
-                    required />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">PAY_0</label>
-                <input class="form-control" type="text" name="PAY_0" placeholder="Enter a value of PAY_0"
-                    required />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">PAY_2</label>
-                <input class="form-control" type="text" name="PAY_2" placeholder="Enter a value of PAY_2"
-                    required />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">PAY_3</label>
-                <input class="form-control" type="text" name="PAY_3" placeholder="Enter a value of PAY_3"
-                    required />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">PAY_4</label>
-                <input class="form-control" type="text" name="PAY_4" placeholder="Enter a value of PAY_4"
-                    required />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">PAY_5</label>
-                <input class="form-control" type="text" name="PAY_5" placeholder="Enter a value of PAY_5"
-                    required />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">PAY_6</label>
-                <input class="form-control" type="text" name="PAY_6" placeholder="Enter a value of PAY_6"
-                    required />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">BILL_AMT1</label>
-                <input class="form-control" type="text" name="BILL_AMT1"
-                    placeholder="Enter a value of BILL_AMT1" required />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">BILL_AMT2</label>
-                <input class="form-control" type="text" name="BILL_AMT2"
-                    placeholder="Enter a value of BILL_AMT2" required />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">BILL_AMT3</label>
-                <input class="form-control" type="text" name="BILL_AMT3"
-                    placeholder="Enter a value of BILL_AMT3" required />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">BILL_AMT4</label>
-                <input class="form-control" type="text" name="BILL_AMT4"
-                    placeholder="Enter a value of BILL_AMT4" required />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">BILL_AMT5</label>
-                <input class="form-control" type="text" name="BILL_AMT5"
-                    placeholder="Enter a value of BILL_AMT5" required />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">BILL_AMT6</label>
-                <input class="form-control" type="text" name="BILL_AMT6"
-                    placeholder="Enter a value of BILL_AMT6" required />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">PAY_AMT1</label>
-                <input class="form-control" type="text" name="PAY_AMT1"
-                    placeholder="Enter a value of PAY_AMT1" required />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">PAY_AMT2</label>
-                <input class="form-control" type="text" name="PAY_AMT2"
-                    placeholder="Enter a value of PAY_AMT2" required />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">PAY_AMT3</label>
-                <input class="form-control" type="text" name="PAY_AMT3"
-                    placeholder="Enter a value of PAY_AMT3" required />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">PAY_AMT4</label>
-                <input class="form-control" type="text" name="PAY_AMT4"
-                    placeholder="Enter a value of PAY_AMT4" required />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">PAY_AMT5</label>
-                <input class="form-control" type="text" name="PAY_AMT5"
-                    placeholder="Enter a value of PAY_AMT5" required />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">PAY_AMT6</label>
-                <input class="form-control" type="text" name="PAY_AMT6"
-                    placeholder="Enter a value of PAY_AMT6" required />
-            </div>
 
-
-            <div class="mb-3">
-                <input class="btn btn-primary" type="submit" value="Predict default" required />
+                <input class="btn btn-primary" type="submit" value="Predict Insurance Premium Value" required />
             </div>
 
         </form>
@@ -149,27 +84,18 @@
     <div class="col-md-6 col-sm-12 col-xs-6 col-lg-6">
         <div class="card">
             <div class="card-header">
-              Credit Default :Banking
+              Insurance Premium price
             </div>
             <div class="card-body">
-
-        Go to <a href="/" class="btn btn-primary">Home</a>
-    </div>
-    <div class="col-md-6 col-sm-12 col-xs-6 col-lg-6">
-        <div class="card">
-            <div class="card-header">
-              default: 0 or 1 
-            </div>
-            <div class="card-body">
-        {% if context['project_data'] is not none %}
+        {% if context['Insurance_data'] is not none %}
         <table class="table table-striped">
-            <caption>Insurance Prediction </caption>
+            <caption>Insurance Premium Prediction </caption>
             <tr>
                 <th>Input Feature</th>
                 <th>Feature Value</th>
 
             </tr>
-            {% for column,value in context['project_data'].items() %}
+            {% for column,value in context['Insurance_data'].items() %}
 
 
 
@@ -181,9 +107,9 @@
             {% endfor %}
             <tr>
 
-                <td>Crdit Default:  </td>
+                <td>expenses </td>
                 <td>
-                    {{ context['default'] }}
+                    {{ context['expenses'] }}
                 </td>
             </tr>
         </table>
@@ -191,7 +117,7 @@
         {% else %}
        
               <h5 class="card-title">Submit Form</h5>
-              <p class="card-text">Kindly provide necessary information to estimate Banking Credit defaults</p>
+              <p class="card-text">Kindly provide necessary information to estimate Insurance Premium price</p>
             
          
 
