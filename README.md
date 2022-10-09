@@ -59,7 +59,7 @@ pip install -r requirements.txt
 To setup CI/CD pipeline in heroku we need 3 information
 1. HEROKU_EMAIL = 76342ns@gmail.com
 2. HEROKU_API_KEY = <>
-3. HEROKU_APP_NAME = insuranceprediction
+3. HEROKU_APP_NAME = insuranceprediction09
 
 BUILD DOCKER IMAGE
 ```
