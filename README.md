@@ -1,4 +1,4 @@
-Application URL : [InsurancePremiumPredictor](https://dashboard.heroku.com/apps/insurancepredition)
+Application URL : [InsurancePremiumPredictor](https://insuranceprediction09.herokuapp.com/)
 
 ## Table of contents
 * [About project](#about-project)
@@ -161,7 +161,7 @@ Applying machine learing tasks like Data Exploration, Data Cleaning, Feature Eng
 - **Webpage &Deployment :** Created a web application that takes all the necessary inputs from the user & shows the output. Then deployed project on the Heroku Platform.
 
 ## Deployment Link :
-Heroku Deployment
+Heroku Deployment : https://insuranceprediction09.herokuapp.com/
 
-https://dashboard.heroku.com/apps/insurancepredition
+
 
