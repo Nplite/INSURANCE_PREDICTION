@@ -12,6 +12,7 @@ from InsurancePremiumPrediction.constant import CONFIG_DIR, get_current_time_sta
 from InsurancePremiumPrediction.Pipeline.pipeline import Pipeline
 from InsurancePremiumPrediction.entity.insurance_premium_predictor import InsurancePredictor, InsurancePremiumPredictionData
 from flask import send_file, abort, render_template
+from InsurancePremiumPrediction.logger import get_log_dataframe
 
 
 
@@ -23,9 +24,9 @@ CONFIG_FILE_PATH = os.path.join(ROOT_DIR, CONFIG_DIR, "config.yaml")
 LOG_DIR = os.path.join(ROOT_DIR, LOG_FOLDER_NAME)
 PIPELINE_DIR = os.path.join(ROOT_DIR, PIPELINE_FOLDER_NAME)
 MODEL_DIR = os.path.join(ROOT_DIR, SAVED_MODELS_DIR_NAME)
-CONFIG_FILE_PATH = os.path.join(ROOT_DIR, CONFIG_DIR, "config.yaml")
 
-from InsurancePremiumPrediction.logger import get_log_dataframe
+
+
 
 INSURANCE_DATA_KEY = "Insurance_data"
 EXPENSES_VALUE_KEY = "expenses"
@@ -104,37 +105,45 @@ def predict():
         INSURANCE_DATA_KEY: None,
         EXPENSES_VALUE_KEY: None
     }
+    logging.info("predict called ")
 
     if request.method == 'POST':
-        age = int(request.form.get('age'))
-        sex = request.form.get('sex')
-        bmi = float(request.form.get('bmi'))
-        children = int(request.form.get('children'))
-        smoker = request.form.get('smoker')
-        region = request.form.get('region')
+        try:
+            age = int(request.form.get('age'))
+            sex = request.form.get('sex')
+            bmi = float(request.form.get('bmi'))
+            children = int(request.form.get('children'))
+            smoker = request.form.get('smoker')
+            region = request.form.get('region')
 
-        Insurance_data = InsurancePremiumPredictionData(age=age,
-                                                        sex=sex,
-                                                        bmi=bmi,
-                                                        children=children,
-                                                        smoker=smoker,
-                                                        region=region,
-                                                        )
-        insurance_df = Insurance_data.get_insurance_input_data_frame()
-        insurance_predictor = InsurancePredictor(model_dir=MODEL_DIR)
-        folder_name = list(map(int, os.listdir(MODEL_DIR)))
-        if folder_name==[]:
+            Insurance_data = InsurancePremiumPredictionData(age=age,
+                                                            sex=sex,
+                                                            bmi=bmi,
+                                                            children=children,
+                                                            smoker=smoker,
+                                                            region=region,
+                                                            )
+            insurance_df = Insurance_data.get_insurance_input_data_frame()
+            insurance_predictor = InsurancePredictor(model_dir=MODEL_DIR)
+            logging.info(f"insurance_predictor: {insurance_predictor}")
+            expenses = insurance_predictor.predict(insurance_df)
+            folder_name = list(map(int, os.listdir(MODEL_DIR)))
+            if folder_name==[]:
+                context = {
+                            INSURANCE_DATA_KEY: Insurance_data.get_insurance_data_as_dict(),
+                            EXPENSES_VALUE_KEY: "TRAIN MODEL FIRST",
+                            }
+                return render_template('predict.html', context=context)          
+            
+            logging.info(f"expenses :{float(expenses)}" )
             context = {
                         INSURANCE_DATA_KEY: Insurance_data.get_insurance_data_as_dict(),
-                        EXPENSES_VALUE_KEY: "TRAIN MODEL FIRST",
+                        EXPENSES_VALUE_KEY: float(expenses),
                         }
-            return render_template('predict.html', context=context)          
-        expenses = insurance_predictor.predict(insurance_df)
-        logging.info(f"expenses :{float(expenses)}" )
-        context = {
-                    INSURANCE_DATA_KEY: Insurance_data.get_insurance_data_as_dict(),
-                    EXPENSES_VALUE_KEY: float(expenses),
-                    }
+            logging.info(f"context: {context}")
+        except Exception as e:
+            raise InsuranceException(e , sys)                        
+                        
         return render_template('predict.html', context=context)
     return render_template("predict.html", context=context)
 
@@ -163,6 +172,26 @@ def saved_models_dir(req_path):
         "parent_label": abs_path
     }
     return render_template('saved_models_files.html', result=result)
+
+
+@app.route("/update_model_config", methods=['GET', 'POST'])
+def update_model_config():
+    try:
+        if request.method == 'POST':
+            model_config = request.form['new_model_config']
+            model_config = model_config.replace("'", '"')
+            print(model_config)
+            model_config = json.loads(model_config)
+
+            write_yaml_file(file_path=CONFIG_FILE_PATH, data=model_config)
+
+        model_config = read_yaml_file(file_path=CONFIG_FILE_PATH)
+        return render_template('update_model.html', result={"model_config": model_config})
+
+    except  Exception as e:
+        logging.exception(e)
+        return str(e)
+
 
 @app.route(f'/logs', defaults={'req_path': f'{LOG_FOLDER_NAME}'})
 @app.route(f'/{LOG_FOLDER_NAME}/<path:req_path>')
@@ -194,5 +223,20 @@ def render_log_dir(req_path):
 
 
 if __name__=="__main__":
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host="0.0.0.0", debug=True,port=port)
+    app.run(host="127.0.0.1", debug=True,port=8080)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
