@@ -3,7 +3,7 @@
 {% block head %}
 
 
-<title>Housing Estimator</title>
+<title>Insurance Estimator</title>
 {% endblock %}
 
 {% block content %}
@@ -13,7 +13,7 @@
 
 
         <form action="/predict" method="post">
-            <legend>CreditDefault Estimation Form</legend>
+            <legend>Insurance Estimation Form</legend>
             <div class="mb-3">
                 <label class="form-label">ID</label>
                 <input class="form-control" type="text" name="ID" placeholder="Enter a value of ID"
@@ -163,7 +163,7 @@
             <div class="card-body">
         {% if context['project_data'] is not none %}
         <table class="table table-striped">
-            <caption>Crdit Default-Banking Prediction </caption>
+            <caption>Insurance Prediction </caption>
             <tr>
                 <th>Input Feature</th>
                 <th>Feature Value</th>
