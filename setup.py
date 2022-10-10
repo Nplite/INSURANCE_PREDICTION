@@ -1,36 +1,36 @@
 from setuptools import setup,find_packages
 from typing import List
 
-#Declaring variables from setup functions
-PROJECT_NAME="Insurace_premium_prediction"
-VERSION="0.0.3"
-AUTHOR="Namdeo Patil"
-DESCRIPTION="This is my first self made project"
-REQUIREMENT_FILE_NAME="requirements.txt"
+    
+#Declaring variables for setup functions
+PROJECT_NAME = "Insurance-Premium-Predictor"
+VERSION = "0.0.2"
+AUTHOR = "NAMDEO PATIL"
+DESRCIPTION = "This is a Insurance-Premium-Prediction Machine Learning Project"
+REQUIREMENT_FILE_NAME = "requirements.txt"
 
-HYPEN_E_DOT="-e ."
+HYPHEN_E_DOT = "-e ."
 
-
-def get_requirements_list()->List[str]:
+def get_requirements_list() -> List[str]:
     """
-    Description : This Function is going to return list of requirements
+    Description: This function is going to return list of requirement
     mention in requirements.txt file
+    return This function is going to return a list which contain name
+    of libraries mentioned in requirements.txt file
     """
-    with open(REQUIREMENT_FILE_NAME) as requirement_file :
-        requirement_list=requirement_file.readlines()
-        requirement_list=[requirement_name.replace("\n","") for requirement_name in requirement_list]
-        if HYPEN_E_DOT in requirement_list:
-            requirement_list.remove(HYPEN_E_DOT)
-
+    with open(REQUIREMENT_FILE_NAME) as requirement_file:
+        requirement_list = requirement_file.readlines()
+        requirement_list = [requirement_name.replace("\n", "") for requirement_name in requirement_list]
+        if HYPHEN_E_DOT in requirement_list:
+            requirement_list.remove(HYPHEN_E_DOT)
         return requirement_list
 
 
 setup(
-name=PROJECT_NAME,
-version=VERSION,
-author=AUTHOR,
-description=DESCRIPTION,
-packages=find_packages(),
-install_requires=get_requirements_list()
+    name = PROJECT_NAME,
+    version = VERSION,
+    author = AUTHOR,
+    description = DESRCIPTION,
+    packages = find_packages(),
+    install_requires = get_requirements_list()
 )
-

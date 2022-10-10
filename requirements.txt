@@ -1,11 +1,11 @@
-numpy
 Flask
 gunicorn
-sklearn
 pandas
+sklearn
+numpy
 PyYAML
 evidently
 dill
 matplotlib
-pytest
+seaborn
 -e .

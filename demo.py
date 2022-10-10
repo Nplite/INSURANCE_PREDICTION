@@ -1,30 +1,20 @@
-from InsurancePremiumPrediction.Exception import InsuranceException
-from InsurancePremiumPrediction.logger import logging
-from InsurancePremiumPrediction.component.data_ingestion import DataIngestion
-from InsurancePremiumPrediction.component.data_validation import DataValidation
-from InsurancePremiumPrediction.component.data_transformation import DataTransformation
-from InsurancePremiumPrediction.config.configuration import Configuration
-from InsurancePremiumPrediction.component.model_trainer import ModelTrainer
-from InsurancePremiumPrediction.component.model_evaluation import ModelEvaluation
-from InsurancePremiumPrediction.component.model_pusher import ModelPusher
+from premium.pipeline.pipeline import Pipeline
+from premium.exception import PremiumException
+from premium.logger import logging
+from premium.config.configuration import Configuration
+import os
 
-file_path=r'C:\Users\Nplite\Desktop\INEURON\INSURANCE_PREDICTION\config\config.yaml'
-config=Configuration(file_path)
-data_ingestion_config_=config.get_data_ingested_config()
-data_ingestion=DataIngestion(data_ingestion_config=data_ingestion_config_)
-data_ingestion_artifact=data_ingestion.initiate_data_ingestion()
-data_validation_config_=config.get_data_validation_config()
-data_validation=DataValidation(data_validation_config=data_validation_config_,data_ingestion_artifact=data_ingestion_artifact)
-data_validation_artifact=data_validation.initiate_data_validation()
-data_transformation_config=config.get_data_transformation_config()
-data_transformation=DataTransformation(data_validation_artifact=data_validation_artifact,data_ingestion_artifact=data_ingestion_artifact,data_transformation_config=data_transformation_config)
-data_transformation_artifact=data_transformation.initiate_data_transformation()
-model_trainer_config=config.get_model_trainer_config()
-model_trainer=ModelTrainer(data_transformation_artifact=data_transformation_artifact,model_trainer_config=model_trainer_config)
-model_trainer_artifact=model_trainer.initiate_model_trainer()
-model_evaluation_config=config.get_model_evaluation_config()
-model_evaluation=ModelEvaluation(data_transformation_artifact=data_transformation_artifact,model_evaluation_config=model_evaluation_config,model_trainer_artifact=model_trainer_artifact)
-model_evaluation_artifact=model_evaluation.initiate_model_evaluation()
-model_pusher_config=config.get_model_pusher_config()
-model_push=ModelPusher(model_evaluation_artifact=model_evaluation_artifact,model_pusher_config=model_pusher_config)
-model_push_artifact=model_push.initiate_model_pusher()
+def main():
+    try:
+        config_path = os.path.join("config","config.yaml")
+        pipeline = Pipeline(Configuration(config_file_path=config_path))
+        #pipeline.run_pipeline()
+        pipeline.start()
+        logging.info("main function execution completed.")
+
+    except Exception as e:
+        logging.error(f"{e}")
+        print(e)
+
+if __name__ == "__main__":
+    main()
